@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+FX-u-like for FreeAgent by [Martin Steel](mailto:martin@martinsteel.co.uk)
 
-Things you may want to cover:
+## Dependencies 
 
-* Ruby version
+* Ruby 2.3.1 
 
-* System dependencies
+## To run
 
-* Configuration
+1. Install required Ruby Gems: 
 
-* Database creation
+    ```bundle install```
 
-* Database initialization
+2. Set up database
 
-* How to run the test suite
+    ```bundle exec rails db:migrate```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Download ECB currency feed: 
 
-* Deployment instructions
+    ```rake ecb:update_rates```
 
-* ...
+4. Run development server: 
+
+    ```bundle exec rails server```
+
+## Comments
+
+* Rails is a bit over-the-top for this but it allowed me to try out the FreeAgent tech stack. Sinatra would've been a lighter weight choice.

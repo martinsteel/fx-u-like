@@ -47,8 +47,9 @@ class ConversionController < ApplicationController
       params["conversion"]["from"],
       params["conversion"]["to"])
     
-    @rate = ExchangeRate.at(@conversion.date, @conversion.from, @conversion.to)
-    @converted_amount = (@conversion.amount.to_f * @rate)
+    rate = ExchangeRate.at(@conversion.date, @conversion.from, @conversion.to)
+    @rate = rate.round(4)
+    @converted_amount = (@conversion.amount.to_f * @rate).round(2)
     render "index"
   end
 end

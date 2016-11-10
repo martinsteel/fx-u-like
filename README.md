@@ -2,6 +2,9 @@
 
 FX-u-like for FreeAgent by [Martin Steel](mailto:martin@martinsteel.co.uk)
 
+![Screenshot of FX-u-like](screenshot.png "Screenshot of FX-u-like")
+
+
 ## Dependencies 
 
 * Ruby 2.3.1 
@@ -30,3 +33,4 @@ All other dependencies are in the GemFile and should be installed using Bundler.
 
 * Rails is a bit over-the-top for this but it allowed me to try out the FreeAgent tech stack. Sinatra would've been a lighter weight choice.
 
+* Web frontend tested in current release of Chrome

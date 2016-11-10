@@ -2,48 +2,57 @@
 <p class="lead">Convert between currencies</p>
 
 <%= form_tag({ action: 'convert' }, { class: 'form-horizontal' }) do %>
-    <div class="col-sm-12 col-lg-offset-2 col-lg-8 jumbotron">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="row form-group">
-                <%= label(:conversion, :date, class: "col-sm-4 control-label") %>
-                <div class="col-sm-8">
-                    <%= date_field(:conversion, :date, { class: "form-control", min: @conversion.min_date , max: @conversion.max_date}) %>
+    <div class="col-sm-12 col-lg-offset-2 col-lg-8">
+        <div class="panel panel-default row">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group">
+                            <%= label(:conversion, :date, class: "col-sm-4 control-label") %>
+                            <div class="col-sm-8">
+                                <%= date_field(:conversion, :date, { class: "form-control", min: @conversion.min_date , max: @conversion.max_date}) %>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <%= label(:conversion, :amount, class: "col-sm-4 control-label") %>
+                            <div class="col-sm-4">
+                                <%= number_field(:conversion, :amount, class: "form-control")%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group">
+                            <%= label(:conversion, :from, class: "col-sm-4 control-label") %>
+                            <div class="col-sm-8">
+                                <%= select(:conversion, :from, @currencies.invert.sort, {}, class: "form-control")%>                    
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <%= label(:conversion, :to, class: "col-sm-4 control-label") %>
+                            <div class="col-sm-8">
+                                <%= select(:conversion, :to, @currencies.invert.sort, {}, class: "form-control")%>                    
+                            </div>
+                        </div>
+                    </div>        
                 </div>
-            </div>
-            <div class="row form-group">
-                <%= label(:conversion, :amount, class: "col-sm-4 control-label") %>
-                <div class="col-sm-4">
-                    <%= number_field(:conversion, :amount, class: "form-control")%>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group">
+                            <div class="col-sm-8 col-sm-offset-4">
+                                <button class="btn btn-primary" id="convert">Convert</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="row form-group">
-                <%= label(:conversion, :from, class: "col-sm-4 control-label") %>
-                <div class="col-sm-8">
-                    <%= select(:conversion, :from, @currencies.invert.sort, {}, class: "form-control")%>                    
+            </div><!-- panel body -->
+        
+            <% if !@rate.nil? %>
+                <div class="panel-footer currency-result">
+                    <p><%=pluralize(@conversion.amount, @currencies[@conversion.from])%> was worth 
+                    <%=pluralize(@converted_amount, @currencies[@conversion.to])%> on <%=@conversion.date.strftime('%d/%m/%Y')%><p>
+                    <p class="small">Exchange rate: <%=@rate%></p>
                 </div>
-            </div>
-            <div class="row form-group">
-                <%= label(:conversion, :to, class: "col-sm-4 control-label") %>
-                <div class="col-sm-8">
-                    <%= select(:conversion, :to, @currencies.invert.sort, {}, class: "form-control")%>                    
-                </div>
-            </div>
-        </div>        
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="row form-group">
-                <div class="col-sm-8 col-sm-offset-4">
-                    <button class="btn btn-primary" id="convert">Convert</button>
-                </div>
-            </div>
-        </div>
-    </div>
+            <% end %>
+        </div><!-- panel -->
     </div>
 <% end %>
-
-<h1><%=@rate%></h1>
-<h1><%=@converted_amount%></h1>

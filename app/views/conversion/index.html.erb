@@ -1,14 +1,14 @@
 <h1>FX-u-like</h1>
 <p class="lead">Convert between currencies</p>
 
-<%= form_tag({ action: 'convert' }, { class: 'form-inline' }) do %>
-    <div class="col-sm-8 col-sm-offset-2 jumbotron">
+<%= form_tag({ action: 'convert' }, { class: 'form-horizontal' }) do %>
+    <div class="col-sm-12 col-lg-offset-2 col-lg-8 jumbotron">
     <div class="row">
         <div class="col-sm-6">
             <div class="row form-group">
                 <%= label(:conversion, :date, class: "col-sm-4 control-label") %>
                 <div class="col-sm-8">
-                    <%= date_field(:conversion, :date, class: "form-control") %>
+                    <%= date_field(:conversion, :date, { class: "form-control", min: @conversion.min_date , max: @conversion.max_date}) %>
                 </div>
             </div>
             <div class="row form-group">

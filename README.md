@@ -6,6 +6,8 @@ FX-u-like for FreeAgent by [Martin Steel](mailto:martin@martinsteel.co.uk)
 
 * Ruby 2.3.1 
 
+All other dependencies are in the GemFile and should be installed using Bundler.
+
 ## To run
 
 1. Install required Ruby Gems: 
@@ -18,7 +20,7 @@ FX-u-like for FreeAgent by [Martin Steel](mailto:martin@martinsteel.co.uk)
 
 3. Download ECB currency feed: 
 
-    ```rake ecb:update_rates```
+    ```bundle exec rails ecb:update_rates```
 
 4. Run development server: 
 

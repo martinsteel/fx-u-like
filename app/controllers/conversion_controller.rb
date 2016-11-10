@@ -1,6 +1,5 @@
-class FxController < ApplicationController
-  def index
-    @currencies = { "USD" => "United States dollar",
+class ConversionController < ApplicationController
+    @@currencies = { "USD" => "United States dollar",
       "JPY" => "Japanese yen",
       "BGN" => "Bulgarian lev",
       "CZK" => "Czech koruna",
@@ -30,14 +29,26 @@ class FxController < ApplicationController
       "PHP" => "Philippine peso",
       "SGD" => "Singapore dollar",
       "THB" => "Thai baht",
-      "ZAR" => "South African rand" 
+      "ZAR" => "South African rand",
+      "EUR" => "Euro" 
     }
 
-
+  def index
+    @currencies = @@currencies
+    @conversion = Conversion.new
   end
 
-  def test
+  def convert
+    @currencies = @@currencies
+
+    @conversion = Conversion.new(      
+      Date.parse(params["conversion"]["date"]),
+      params["conversion"]["amount"],
+      params["conversion"]["from"],
+      params["conversion"]["to"])
     
-    @exchange_rates = ExchangeRate.all
+    @rate = ExchangeRate.at(@conversion.date, @conversion.from, @conversion.to)
+    @converted_amount = (@conversion.amount.to_f * @rate)
+    render "index"
   end
 end

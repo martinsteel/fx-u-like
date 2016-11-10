@@ -2,7 +2,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'date'
 require 'bigdecimal'
-require 'bigdecimal'
 
 class ExchangeRate < ApplicationRecord
     ECB_URL = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'

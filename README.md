@@ -29,3 +29,4 @@ All other dependencies are in the GemFile and should be installed using Bundler.
 ## Comments
 
 * Rails is a bit over-the-top for this but it allowed me to try out the FreeAgent tech stack. Sinatra would've been a lighter weight choice.
+

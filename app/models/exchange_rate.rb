@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'date'
 require 'bigdecimal'
+require 'bigdecimal'
 
 class ExchangeRate < ApplicationRecord
     ECB_URL = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
@@ -49,8 +50,8 @@ class ExchangeRate < ApplicationRecord
         raise "From currency doesn't exist" if from_currency.nil? 
         raise "To currency doesn't exist" if to_currency.nil?
 
-        # All rates are Euro based so from -> EUR (divide by from rate) then EUR -> to (multiply by to rate)
-        rate = 1 / from_currency.rate * to_currency.rate
+        # All rates are Euro based so from -> EUR then EUR -> to 
+        rate = to_currency.rate / from_currency.rate  
         return rate
     end #ExchangeRate.at
 end
